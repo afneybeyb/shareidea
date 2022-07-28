@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+let note = ref(localStorage.getItem("note") || "");
+
+let saveNote = () => {
+	localStorage.setItem("note", note.value);
+};
+</script>
 
 <template>
 	<main>
@@ -8,7 +16,8 @@
 				You can write your idea here and I will give you link to access that idea.
 			</p>
 		</section>
-		<textarea name="idea" id="" placeholder="Sooo...do YOU have any idea? 🧐"></textarea>
+		<textarea id="idea-input" placeholder="Sooo...do YOU have any idea? 🧐" v-model="note"></textarea>
+		<button @click="saveNote">Save</button>
 	</main>
 </template>
 
@@ -18,7 +27,6 @@ main {
 	margin-inline: auto;
 	padding: 5px;
 }
-
 
 textarea {
 	width: 100%;
@@ -40,3 +48,4 @@ textarea {
 	}
 }
 </style>
+
