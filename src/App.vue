@@ -16,6 +16,7 @@ import { RouterLink, RouterView } from "vue-router";
 		</div>
 	</header>
 
+	<!-- Vue router is used to navigate between different views -->
 	<RouterView />
 </template>
 
