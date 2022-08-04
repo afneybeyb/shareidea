@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { Firestore, getFirestore, collection, getDocs, doc, getDoc, setDoc, addDoc } from 'firebase/firestore/lite';
+import { Firestore, getFirestore, collection, getDocs, doc, getDoc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore/lite';
 
 // Initial Firebase configuration - env variables are set in .env.local file
 const firebaseConfig = {
@@ -36,5 +36,11 @@ const getIdea = async (id: string) => {
 	return snapshot.exists() ? snapshot.data() : false;
 }
 
-export { db, getIdea, getIdeas };
+const addIdea = async (idea: any) => {
+	// Adds idea to ideas collection in db
+	const ref = await addDoc(collection(db, 'ideas'), idea);
+	return ref.id;
+}
+
+export { db, getIdea, getIdeas, addIdea, serverTimestamp };
 
