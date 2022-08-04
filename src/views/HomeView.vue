@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { getIdea, addIdea, serverTimestamp } from "../firebase";
 
-let note = ref(localStorage.getItem("note") || "");
+let note = ref("");
 
-let saveNote = () => {
-	localStorage.setItem("note", note.value);
+let saveNote = async () => {
+	const idea = {
+		note: note.value,
+		time: serverTimestamp(),
+	};
+	const ref = await addIdea(idea);
+	console.log(ref);
 };
 </script>
 
