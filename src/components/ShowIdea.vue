@@ -16,11 +16,18 @@ let note = idea ? idea.note : "Failed to find your idea. 🥺 Check your link an
 </script>
 
 <template>
-	<p>
-		{{ note }}
-	</p>
+	<pre>{{ note }}</pre>
 </template>
 
 <style scoped>
+pre {
+	line-height: 1.4;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font-size: 1.1rem;
+
+	white-space: pre-wrap;
+	overflow: auto;
+}
 </style>
 
