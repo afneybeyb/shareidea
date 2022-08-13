@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getIdea, addIdea, serverTimestamp } from "../firebase";
+import { ref } from "vue";
+import router from "@/router";
+import { addIdea, serverTimestamp } from "../firebase";
 
 let note = ref("");
 
-let saveNote = async () => {
+let saveIdea = async () => {
 	const idea = {
 		note: note.value,
 		time: serverTimestamp(),
 	};
-	const ref = await addIdea(idea);
-	console.log(ref);
+	// Add idea and catch error if adding idea fails
+	const ref = await addIdea(idea).catch(() => console.error("Unable to connect to the server."));
+	// Redirect to the new idea
+	if (ref?.id) router.push(ref.id);
 };
 </script>
 
@@ -23,7 +26,8 @@ let saveNote = async () => {
 			</p>
 		</section>
 		<textarea id="idea-input" placeholder="Sooo...do YOU have any idea? 🧐" v-model="note"></textarea>
-		<button @click="saveNote">Save</button>
+		<button @click="saveIdea">Save</button>
+
 	</main>
 </template>
 

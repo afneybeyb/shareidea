@@ -39,7 +39,7 @@ const getIdea = async (id: string) => {
 const addIdea = async (idea: any) => {
 	// Adds idea to ideas collection in db
 	const ref = await addDoc(collection(db, 'ideas'), idea);
-	return ref.id;
+	return ref;
 }
 
 export { db, getIdea, getIdeas, addIdea, serverTimestamp };
