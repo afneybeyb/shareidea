@@ -42,6 +42,10 @@ textarea {
 	width: 100%;
 	height: 350px;
 	margin-block: 1rem;
+
+	font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	color: var(--color-red-dark);
 }
 
 @media screen and (max-width: 500px) {
