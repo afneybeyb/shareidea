@@ -64,8 +64,12 @@ nav {
 		height: auto;
 	}
 
+	nav,
 	.navbar {
 		flex-direction: column;
+		gap: 0.5rem;
+
+		text-align: center;
 	}
 }
 </style>
