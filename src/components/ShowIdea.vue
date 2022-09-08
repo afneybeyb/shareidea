@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import router from "@/router";
+import { reactive } from "vue";
 import { getIdea } from "../firebase";
 
 const props = defineProps({
@@ -11,23 +13,36 @@ const props = defineProps({
 
 let idea = await getIdea(props.id);
 
-// Shows either the idea or a sorry message
+// Shows either the idea or a sorry mhandEmojis[Math.floor(Math.random() * handEmojis.length)];essage
 let note = idea ? idea.note : "Failed to find your idea. 🥺 Check your link and try again.";
+let state = reactive({ copyLinkText: "Copy link" });
+
+// Copy idea URL to clipboard
+const copyLink = () => {
+	// Copy note to clipboard if Clipboard API is available
+	if (navigator.clipboard) {
+		navigator.clipboard.writeText(window.location.origin + router.currentRoute.value.fullPath);
+
+		// Change copy button text, pick random emoji and to the end of the text 
+		const handEmojis = ["👌", "👍", "🤘", "🫶", "🖖"]
+		state.copyLinkText = `Link copied! ${handEmojis[Math.floor(Math.random() * handEmojis.length)]}`;
+	} else {
+		state.copyLinkText = "Unable to copy 😞";
+	}
+}
 </script>
 
 <template>
 	<pre>{{ note }}</pre>
+	<button :onclick="copyLink">
+		{{ state.copyLinkText }}
+		<span class="btn-popup">
+			Copy to clipboard
+		</span>
+	</button>
 </template>
 
 <style scoped>
-pre {
-	line-height: 1.4;
-	font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	font-size: 1.1rem;
 
-	white-space: pre-wrap;
-	overflow: auto;
-}
 </style>
 
