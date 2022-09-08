@@ -6,6 +6,10 @@ import { addIdea, serverTimestamp } from "../firebase";
 let note = ref("");
 
 let saveIdea = async () => {
+	if (note.value == "") {
+		console.error("It looks like you haven't written anything yet.");
+		return 1;
+	}
 	const idea = {
 		note: note.value,
 		time: serverTimestamp(),
@@ -41,7 +45,6 @@ main {
 textarea {
 	width: 100%;
 	height: 350px;
-	margin-block: 1rem;
 }
 
 @media screen and (max-width: 500px) {

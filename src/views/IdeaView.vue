@@ -12,12 +12,12 @@ const props = defineProps({
 
 <template>
 	<main>
-		<section class="welcome-text">
-			<h1>Oh, you again! Here's your idea:</h1>
+		<section>
+			<h1 class="welcome-text">Oh, you again! Here's your idea:</h1>
 			<Suspense>
 				<ShowIdea :id="props.id" />
 				<template #fallback>
-					Loading your amazing idea 🤠
+					<p class="loading-fallback">Loading your amazing idea 🤠</p>
 				</template>
 			</Suspense>
 		</section>
@@ -31,13 +31,17 @@ main {
 	padding: 5px;
 }
 
+.loading-fallback {
+	padding: 1.5rem 0.3rem;
+}
+
 @media screen and (max-width: 500px) {
 	main {
 		width: 100%;
 	}
 
 	.welcome-text {
-		padding-inline: 15px;
+		padding-inline: 0.3rem;
 	}
 }
 </style>
