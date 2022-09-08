@@ -27,6 +27,14 @@ header {
 	padding: 10px;
 
 	background-color: var(--color-bg2);
+
+	border-radius: 6px;
+}
+
+@media screen and (max-width: 700px) {
+	header {
+		border-radius: 0px;
+	}
 }
 
 .navbar {
