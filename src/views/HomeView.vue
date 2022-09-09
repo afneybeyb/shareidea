@@ -59,6 +59,11 @@ textarea {
 	textarea {
 		height: 500px;
 	}
+
+	button {
+		display: block;
+		width: 100%;
+	}
 }
 </style>
 

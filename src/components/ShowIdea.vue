@@ -43,6 +43,11 @@ const copyLink = () => {
 </template>
 
 <style scoped>
-
+@media screen and (max-width: 500px) {
+	button {
+		display: block;
+		width: 100%;
+	}
+}
 </style>
 
